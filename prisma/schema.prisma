@@ -18,7 +18,7 @@ model Account {
   name          String    @db.Char(200)
   email         String    @db.Char(100)
   password      String    @db.Char(200)
-  date_of_birth DateTime  @db.Date
+  date_of_birth String    @db.Char(200)
   Profile       Profile[]
 }
 
