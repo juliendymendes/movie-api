@@ -1,11 +1,15 @@
 import express from 'express';
 import cors from 'cors';
 
-const routes = require('./routes');
-const accountRoutes = require('./routes/accountRoute');
+import routeIndex from './routes/index';
+import accountRoutes from './routes/accountRoute';
+import movieRoutes from './routes/movieRoute';
+import profileRoutes from './routes/profileRoute';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const router = express.Router();
 
 // Configurações avançadas de CORS
 const corsOptions = {
@@ -17,8 +21,10 @@ const corsOptions = {
 app.use(cors());
 
 app.use(express.json());
-app.use('/api', routes);
+app.use('/api', routeIndex);
 
 app.use('/account', accountRoutes);
+app.use('/movie', movieRoutes);
+app.use('/profile', profileRoutes);
 
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
