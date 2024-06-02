@@ -25,3 +25,22 @@ exports.createAccount = async (req: Request, res: Response) => {
     }
     
 }
+
+exports.login = async (req: Request, res: Response) => {
+    const { email, password } = req.body;
+
+    if(!email || !password) return res.status(400).json({ error: 'Dados incompletos' });
+
+    try {
+        const account = await prisma.account.findFirst({
+            where: {
+                email,
+                password,
+            },
+        });
+        if(!account) return res.status(400).json({ error: 'Conta não encontrada' });
+        return res.json(account);
+    } catch (error) {
+        return res.status(400).send(error);
+    }
+}
