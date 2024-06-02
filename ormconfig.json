@@ -1,0 +1,17 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "movie_user",
+    "password": "Desafio1509",
+    "database": "movies_db",
+    "synchronize": true,
+    "logging": false,
+    "entities": ["src/entities/**/*.ts"],
+    "migrations": ["src/migrations/**/*.ts"],
+    "cli": {
+      "entitiesDir": "src/entities",
+      "migrationsDir": "src/migrations"
+    }
+  }
+  

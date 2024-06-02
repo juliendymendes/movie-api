@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: movie_user
+      POSTGRES_PASSWORD: Desafio1509
+      POSTGRES_DB: movies_db
+    ports:
+      - "5432:5432"
