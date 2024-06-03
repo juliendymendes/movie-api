@@ -5,6 +5,7 @@ import routeIndex from './routes/index';
 import accountRoutes from './routes/accountRoute';
 import movieRoutes from './routes/movieRoute';
 import profileRoutes from './routes/profileRoute';
+import watchlistRoutes from './routes/watchlistRoute';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -26,5 +27,6 @@ app.use('/api', routeIndex);
 app.use('/account', accountRoutes);
 app.use('/movie', movieRoutes);
 app.use('/profile', profileRoutes);
+app.use('/watchlist', watchlistRoutes);
 
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
