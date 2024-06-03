@@ -25,21 +25,19 @@ exports.createProfile = async (req: Request, res: Response) => {
 
 
 // Busca todos os perfis da conta
-// exports.getAllByAccount = async (req: Request, res: Response) => {
-//     const { account_id } = req.body;
+exports.getAllByAccount = async (req: Request, res: Response) => {
+	const account_id = Number(req.query.account_id);
+console.log(account_id);
 
-//     if(!account_id) return res.status(400).json({ error: 'Dados incompletos' });
-        
-//     try{
-//         const profiles = await prisma.profile.create({
-//             data: {
-//             name,
-//             account_id
-//             },
-//         });
-//         return res.json(profile);
-//     } catch (error) {
-//         return res.status(400).send(error);
-//     }
-    
-// }
+	if(!account_id) return res.status(400).json({ error: 'Dados incompletos' });
+	try{
+			const profiles = await prisma.profile.findMany({
+				where:{
+					account_id: account_id
+				}
+			})
+			return res.json(profiles);
+	} catch (error) {
+			return res.status(400).send(error);
+	}
+}

@@ -6,6 +6,7 @@ import accountRoutes from './routes/accountRoute';
 import movieRoutes from './routes/movieRoute';
 import profileRoutes from './routes/profileRoute';
 import watchlistRoutes from './routes/watchlistRoute';
+import watchedMovieRoutes from './routes/watchedMovieRoute';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,7 +20,7 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
   };
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use('/api', routeIndex);
@@ -28,5 +29,6 @@ app.use('/account', accountRoutes);
 app.use('/movie', movieRoutes);
 app.use('/profile', profileRoutes);
 app.use('/watchlist', watchlistRoutes);
+app.use('/watchedMovies', watchedMovieRoutes);
 
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
