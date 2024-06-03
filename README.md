@@ -52,3 +52,5 @@ prisma migrate dev
 ```bash
 npm start
 ```
+
+A aplicação estará disponível no endereço http://localhost:3000
