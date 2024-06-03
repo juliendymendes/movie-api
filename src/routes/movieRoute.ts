@@ -3,8 +3,9 @@ import express from "express";
 const router = express.Router();
 const movieController = require('../controllers/movieController');
 
-// get filmes by category
 router.get('/category/:category', movieController.getMoviesByCategory);
+
+router.get('/recomended/:profile_id', movieController.getMoviesByCategoryInWatchlist);
 
 router.get('/discover', movieController.discoverMovies);
 
