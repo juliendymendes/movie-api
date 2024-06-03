@@ -71,11 +71,6 @@ exports.getMoviesByCategoryInWatchlist = async (req: Request, res: Response) => 
     const mostFrequentCategory = Object.keys(categoryFrequency).reduce((a, b) => 
       categoryFrequency[parseInt(a)] > categoryFrequency[parseInt(b)] ? a : b
     );
-
-    console.log({
-      uniqueCategories,
-      mostFrequentCategory: parseInt(mostFrequentCategory),
-    });
   
     const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${parseInt(mostFrequentCategory)}`;
     const options = {
@@ -89,8 +84,7 @@ exports.getMoviesByCategoryInWatchlist = async (req: Request, res: Response) => 
     fetch(url, options)
       .then((res: { json: () => any; }) => res.json())
       .then((json: any) => (
-        // retornar apenas o id dos filmes
-        res.send(json.results.map((movie: { id: any; }) => movie.id))
+        res.send(json)
       ))
       .catch((err: string) => console.error('error:' + err));
   } catch (error) {

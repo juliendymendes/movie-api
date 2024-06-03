@@ -26,21 +26,24 @@ exports.addMovie = async (req: Request, res: Response) => {
 
 // Visualizar lista para assistir
 exports.getWatchlist = async (req: Request, res: Response) => {
-    const profile_id = parseInt(req.params.profile_id);
+  const profile_id = parseInt(req.params.profile_id);
 
-    if(!profile_id) return res.status(400).json({ error: 'Dados incompletos' });
-        
-    try{
-        const watchlist = await prisma.watchlist.findMany({
-            where: {
-                profile_id,
-            }
-        });
-        return res.json(watchlist);
-    } catch (error) {
-        return res.status(400).send(error);
-    }
-    
+  if (!profile_id) {
+    return res.status(400).json({ error: 'Dados incompletos' });
+  }
+
+  try {
+    const watchlist = await prisma.watchlist.findMany({
+      where: {
+        profile_id,
+      },
+    });
+
+    return res.json({ results: watchlist });
+  } catch (error) {
+    console.error('Erro ao buscar a watchlist:', error);
+    return res.status(500).json({ error: 'Erro ao buscar a watchlist' });
+  }
 }
 
 // Procurar filme na watchlist por categoria
