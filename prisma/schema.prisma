@@ -15,17 +15,17 @@ datasource db {
 
 model Account {
   id            Int       @id @default(autoincrement())
-  name          String    @db.Char(200)
-  email         String    @db.Char(100)
-  password      String    @db.Char(200)
-  date_of_birth String    @db.Char(200)
+  name          String
+  email         String
+  password      String
+  date_of_birth String
   Profile       Profile[]
 }
 
 model Profile {
   id         Int    @id @default(autoincrement())
   account_id Int
-  name       String @db.Char(100)
+  name       String
 
   account       Account         @relation(fields: [account_id], references: [id])
   Watchlist     Watchlist[]
@@ -37,7 +37,7 @@ model Profile {
 model Watchlist {
   movie_id   Int
   profile_id Int
-  category   String @db.Char(100)
+  category   Int[]
 
   profile Profile @relation(fields: [profile_id], references: [id])
 
@@ -48,6 +48,7 @@ model Watchlist {
 model WatchedMovies {
   movie_id   Int
   profile_id Int
+  category   Int[]
 
   profile Profile @relation(fields: [profile_id], references: [id])
 
